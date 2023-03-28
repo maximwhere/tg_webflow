@@ -9,7 +9,7 @@
 ### Склонировать репозиторий:
 ```zsh
 bash
-Copy code
+```
 git clone https://github.com/maximwhere/tg_webflow.git
 Установить зависимости с помощью утилиты pip:
 Copy code
