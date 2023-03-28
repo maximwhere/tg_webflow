@@ -1,32 +1,22 @@
-# Telegram Bot для получения уведомлений о новых заявках в Webflow
+# Описание
 
-Этот Telegram бот используется для получения уведомлений о новых заявках, отправленных через форму на вашем сайте, построенном на платформе Webflow. Бот получает информацию о заявках через Webflow API и отправляет уведомление в чат Telegram с помощью Telegram API.
+Это приложение слушает входящие POST запросы на /webhook, получает json и отправляет сообщение в чат телеграмм.
 
-## Установка и запуск
+# Установка и запуск
 
-Для запуска бота необходимо выполнить следующие шаги:
+1. Клонируйте репозиторий: `git clone https://github.com/maximwhere/tg_webflow.git`
+2. Перейдите в папку проекта: `cd tg_webflow`
+3. Установите необходимые зависимости: `pip install -r requirements.txt`
+4. Создайте файл `.env` и укажите в нем следующие переменные окружения:
 
-### Склонировать репозиторий:
-```
-git clone https://github.com/maximwhere/tg_webflow.git
-```
-### Установить зависимости с помощью утилиты pip:
-```
-pip install -r requirements.txt
-```
-### Задать необходимые переменные окружения в файле .env:
-```
-WEBFLOW_API_TOKEN=<your Webflow API token>
-TELEGRAM_BOT_TOKEN=<your Telegram bot token>
-TELEGRAM_CHAT_ID=<your Telegram chat ID>
-WEBHOOK_URL=<your webhook URL>
-WEBFLOW_SITE_ID=<your Webflow site ID>
-WEBFLOW_FORM_ID=<your Webflow form ID>
-```
-### Запустить бот с помощью команды:
-``` 
-python main.py
-```
-## Использование
+    ```
+    TELEGRAM_BOT_TOKEN=your_bot_token
+    TELEGRAM_CHAT_ID=your_chat_id
+    ```
+    
+5. Запустите приложение: `python main.py`
 
-Как только бот будет запущен, он начнет получать уведомления о новых заявках, отправленных через форму на вашем сайте, построенном на платформе Webflow. Бот будет отправлять уведомление в чат Telegram, который вы указали в качестве TELEGRAM_CHAT_ID в файле .env.
+# Переменные окружения
+
+- `TELEGRAM_BOT_TOKEN` - токен бота телеграмм (можно получить у @BotFather).
+- `TELEGRAM_CHAT_ID` - ID чата, в который будут приходить уведомления. Чтобы узнать ID чата, напишите в чат боту @userinfobot.
