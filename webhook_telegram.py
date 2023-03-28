@@ -1,25 +1,16 @@
-import os
-import requests
-import logging
-from dotenv import load_dotenv
+from flask import Flask, request
+import json
 
-load_dotenv()
+app = Flask(__name__)
 
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
-WEBHOOK_URL = os.getenv('WEBHOOK_URL')
+@app.route('/webhook', methods=['POST'])
+def handle_webhook():
+    data = json.loads(request.data)
+    form_data = data['data']
+    name = form_data['Name 2']
+    email = form_data['Email 2']
 
-# Set up logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+    return {'name': name, 'email': email, 'form_name': form_data['formName']}
 
-def set_telegram_webhook():
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/setWebhook"
-    payload = {
-        'url': f"{WEBHOOK_URL}telegram_updates"
-    }
-    logger.debug(f"Setting webhook: {url}, {payload}")
-    response = requests.post(url, json=payload)
-    logger.debug(f"Webhook response: {response.status_code}, {response.text}")
-    response.raise_for_status()
-
-set_telegram_webhook()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
